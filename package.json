@@ -1,0 +1,36 @@
+{
+  "name": "mongoose-ops",
+  "version": "0.1.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "start": "node dist/index.js",
+    "dev": "nodemon --no-stdin --exec ./node_modules/.bin/ts-node -- ./src/index.ts",
+    "build": "tsc",
+    "prepublish": "yarn build"
+  },
+  "license": "CC0-1.0",
+  "author": {
+    "name": "Abdelrahman Abdelhafez",
+    "email": "abdelrahman@maged.rocks",
+    "url": "https://maged.rocks"
+  },
+  "keywords": [
+    "mongodb",
+    "mongoose",
+    "crud"
+  ],
+  "homepage": "https://github.com/ar-maged/mongoose-ops",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ar-maged/mongoose-ops.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ar-maged/mongoose-ops/issues"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4",
+    "ts-node": "^8.10.1",
+    "typescript": "^3.9.3"
+  }
+}
