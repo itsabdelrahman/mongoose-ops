@@ -12,8 +12,12 @@
   "peerDependencies": {
     "mongoose": "^5.9.15"
   },
+  "dependencies": {
+    "ramda": "^0.27.0"
+  },
   "devDependencies": {
     "@types/mongoose": "^5.7.21",
+    "@types/ramda": "^0.27.6",
     "husky": "^4.2.5",
     "lint-staged": "^10.2.4",
     "nodemon": "^2.0.4",
