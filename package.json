@@ -5,7 +5,9 @@
   "main": "dist/index.js",
   "scripts": {
     "start": "node dist/index.js",
-    "dev": "nodemon --no-stdin --exec ./node_modules/.bin/ts-node -- ./src/index.ts",
+    "start-watch": "nodemon --no-stdin --exec ./node_modules/.bin/ts-node -- ./src/index.ts",
+    "test": "jest",
+    "test-watch": "jest --watch",
     "build": "tsc",
     "prepublish": "yarn build"
   },
@@ -18,14 +20,21 @@
   },
   "devDependencies": {
     "@types/flat": "^5.0.1",
+    "@types/jest": "^25.2.3",
     "@types/mongoose": "^5.7.21",
     "@types/ramda": "^0.27.6",
     "husky": "^4.2.5",
+    "jest": "^26.0.1",
     "lint-staged": "^10.2.4",
     "nodemon": "^2.0.4",
     "prettier": "^2.0.5",
+    "ts-jest": "^26.0.0",
     "ts-node": "^8.10.1",
     "typescript": "^3.9.3"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node"
   },
   "husky": {
     "hooks": {
