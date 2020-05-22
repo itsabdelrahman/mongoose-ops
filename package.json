@@ -13,6 +13,7 @@
     "mongoose": "^5.9.15"
   },
   "devDependencies": {
+    "@types/mongoose": "^5.7.21",
     "husky": "^4.2.5",
     "lint-staged": "^10.2.4",
     "nodemon": "^2.0.4",
