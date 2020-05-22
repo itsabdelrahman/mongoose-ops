@@ -9,6 +9,9 @@
     "build": "tsc",
     "prepublish": "yarn build"
   },
+  "peerDependencies": {
+    "mongoose": "^5.9.15"
+  },
   "devDependencies": {
     "husky": "^4.2.5",
     "lint-staged": "^10.2.4",
