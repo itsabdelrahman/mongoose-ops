@@ -13,9 +13,11 @@
     "mongoose": "^5.9.15"
   },
   "dependencies": {
+    "flat": "^5.0.0",
     "ramda": "^0.27.0"
   },
   "devDependencies": {
+    "@types/flat": "^5.0.1",
     "@types/mongoose": "^5.7.21",
     "@types/ramda": "^0.27.6",
     "husky": "^4.2.5",
