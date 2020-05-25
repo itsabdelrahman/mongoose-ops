@@ -1,9 +1,9 @@
 import { Model, Document } from 'mongoose';
-import { count } from '../../src/operations';
+import { deleteOne } from '../../src/operations';
 import { beforeAllHook, afterAllHook, beforeEachHook } from '../hooks';
 import { Database, DatabaseServer } from '../mongodb';
 
-describe('MongoDB: count()', () => {
+describe('MongoDB: deleteOne()', () => {
   let model: Model<Document>;
   let database: Database;
   let databaseServer: DatabaseServer;
@@ -28,7 +28,7 @@ describe('MongoDB: count()', () => {
     await beforeEachHook(database);
   });
 
-  test('should count all documents', async () => {
+  test('should delete identified document', async () => {
     const nowMillis = Date.now();
 
     const newStudents = [
@@ -43,14 +43,20 @@ describe('MongoDB: count()', () => {
       createdAt: nowMillis + index * 1000,
     }));
 
-    await model.create(newStudents);
+    const createdStudents = await model.create(newStudents);
 
-    const studentsCount = await count(model)();
+    const deletedStudent = await deleteOne(model)({
+      query: {
+        _id: createdStudents[1]._id.toString(),
+      },
+    });
 
-    expect(studentsCount).toBe(2);
+    expect(deletedStudent).toMatchObject({
+      _id: createdStudents[1]._id.toString(),
+    });
   });
 
-  test('should count selected documents', async () => {
+  test('should delete selected document', async () => {
     const nowMillis = Date.now();
 
     const newStudents = [
@@ -67,16 +73,19 @@ describe('MongoDB: count()', () => {
 
     await model.create(newStudents);
 
-    const studentsCount = await count(model)({
+    const deletedStudent = await deleteOne(model)({
       query: {
         name: 'Jane',
       },
     });
 
-    expect(studentsCount).toBe(1);
+    expect(deletedStudent).toMatchObject({
+      _id: expect.any(String),
+      name: 'Jane',
+    });
   });
 
-  test('should count nestedly selected documents', async () => {
+  test('should delete nestedly selected document', async () => {
     const nowMillis = Date.now();
 
     const newStudents = [
@@ -101,13 +110,33 @@ describe('MongoDB: count()', () => {
 
     await model.create(newStudents);
 
-    const studentsCount = await count(model)({
+    const deletedStudent = await deleteOne(model)({
       query: {
         'social.facebook': 'fb.com/jane',
       },
     });
 
-    expect(studentsCount).toBe(1);
+    expect(deletedStudent).toMatchObject({
+      _id: expect.any(String),
+      name: 'Jane',
+    });
+  });
+
+  test('should not return metadata', async () => {
+    const newStudent = {
+      name: 'John',
+      createdAt: Date.now(),
+    };
+
+    await model.create(newStudent);
+
+    const deletedStudent = await deleteOne(model)({
+      query: {
+        name: 'John',
+      },
+    });
+
+    expect((<any>deletedStudent).__v).toBeUndefined();
   });
 
   test('should not break if query has no matches', async () => {
@@ -118,12 +147,12 @@ describe('MongoDB: count()', () => {
 
     await model.create(newStudent);
 
-    const deleteOneOperation = count(model)({
+    const deleteOneOperation = deleteOne(model)({
       query: {
         name: 'Robin',
       },
     });
 
-    await expect(deleteOneOperation).resolves.toEqual(0);
+    await expect(deleteOneOperation).resolves.toBeNull();
   });
 });

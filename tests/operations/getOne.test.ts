@@ -1,9 +1,9 @@
 import { Model, Document } from 'mongoose';
-import { count } from '../../src/operations';
+import { getOne } from '../../src/operations';
 import { beforeAllHook, afterAllHook, beforeEachHook } from '../hooks';
 import { Database, DatabaseServer } from '../mongodb';
 
-describe('MongoDB: count()', () => {
+describe('MongoDB: getOne()', () => {
   let model: Model<Document>;
   let database: Database;
   let databaseServer: DatabaseServer;
@@ -28,7 +28,7 @@ describe('MongoDB: count()', () => {
     await beforeEachHook(database);
   });
 
-  test('should count all documents', async () => {
+  test('should get identified document', async () => {
     const nowMillis = Date.now();
 
     const newStudents = [
@@ -43,14 +43,20 @@ describe('MongoDB: count()', () => {
       createdAt: nowMillis + index * 1000,
     }));
 
-    await model.create(newStudents);
+    const createdStudents = await model.create(newStudents);
 
-    const studentsCount = await count(model)();
+    const existingStudent = await getOne(model)({
+      query: {
+        _id: createdStudents[1]._id.toString(),
+      },
+    });
 
-    expect(studentsCount).toBe(2);
+    expect(existingStudent).toMatchObject({
+      _id: createdStudents[1]._id.toString(),
+    });
   });
 
-  test('should count selected documents', async () => {
+  test('should get selected document', async () => {
     const nowMillis = Date.now();
 
     const newStudents = [
@@ -67,16 +73,19 @@ describe('MongoDB: count()', () => {
 
     await model.create(newStudents);
 
-    const studentsCount = await count(model)({
+    const existingStudent = await getOne(model)({
       query: {
         name: 'Jane',
       },
     });
 
-    expect(studentsCount).toBe(1);
+    expect(existingStudent).toMatchObject({
+      _id: expect.any(String),
+      name: 'Jane',
+    });
   });
 
-  test('should count nestedly selected documents', async () => {
+  test('should get nestedly selected document', async () => {
     const nowMillis = Date.now();
 
     const newStudents = [
@@ -101,13 +110,33 @@ describe('MongoDB: count()', () => {
 
     await model.create(newStudents);
 
-    const studentsCount = await count(model)({
+    const existingStudent = await getOne(model)({
       query: {
         'social.facebook': 'fb.com/jane',
       },
     });
 
-    expect(studentsCount).toBe(1);
+    expect(existingStudent).toMatchObject({
+      _id: expect.any(String),
+      name: 'Jane',
+    });
+  });
+
+  test('should not return metadata', async () => {
+    const newStudent = {
+      name: 'John',
+      createdAt: Date.now(),
+    };
+
+    await model.create(newStudent);
+
+    const existingStudent = await getOne(model)({
+      query: {
+        name: 'John',
+      },
+    });
+
+    expect((<any>existingStudent).__v).toBeUndefined();
   });
 
   test('should not break if query has no matches', async () => {
@@ -118,12 +147,12 @@ describe('MongoDB: count()', () => {
 
     await model.create(newStudent);
 
-    const deleteOneOperation = count(model)({
+    const getOneOperation = getOne(model)({
       query: {
         name: 'Robin',
       },
     });
 
-    await expect(deleteOneOperation).resolves.toEqual(0);
+    await expect(getOneOperation).resolves.toBeNull();
   });
 });
