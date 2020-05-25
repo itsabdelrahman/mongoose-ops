@@ -27,6 +27,7 @@
     "jest": "^26.0.1",
     "lint-staged": "^10.2.4",
     "mongodb-memory-server": "^6.6.1",
+    "mongoose": "^5.9.15",
     "nodemon": "^2.0.4",
     "prettier": "^2.0.5",
     "ts-jest": "^26.0.0",
