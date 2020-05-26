@@ -96,4 +96,4 @@ const deletedUsers = await deleteMany(userModel)({
 
 ## License
 
-<a href="https://creativecommons.org/publicdomain/zero/1.0/">Creative Commons Zero v1.0 Universal</a>
+[CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/)
