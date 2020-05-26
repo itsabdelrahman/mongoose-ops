@@ -12,6 +12,12 @@ A thin layer on top of [Mongoose](https://mongoosejs.com/) that facilitates [Mon
 
 _Disclaimer: this package is experimental — use at your own peril._
 
+## Installation
+
+```bash
+❯ npm install --save mongoose-ops
+```
+
 ## Usage
 
 ```js
