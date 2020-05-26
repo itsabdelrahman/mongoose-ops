@@ -10,6 +10,8 @@
 
 A thin layer on top of [Mongoose](https://mongoosejs.com/) that facilitates [MongoDB](https://www.mongodb.com/) CRUD operations using a straightforward API.
 
+_Disclaimer: this package is experimental — use at your own peril._
+
 ## Usage
 
 ```js
