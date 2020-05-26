@@ -1,6 +1,4 @@
 <div align="center">
-  <img src="" width="100"/>
-
   <h1>mongoose-ops</h1>
 
   <a href="https://github.com/ar-maged/mongoose-ops/actions">
