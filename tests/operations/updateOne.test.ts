@@ -1,7 +1,7 @@
 import { Model, Document } from 'mongoose';
 import { updateOne } from '../../src/operations';
 import { beforeAllHook, afterAllHook, beforeEachHook } from '../hooks';
-import { Database, DatabaseServer } from '../mongodb';
+import { Database, DatabaseServer } from '../types';
 
 describe('MongoDB: updateOne()', () => {
   let model: Model<Document>;

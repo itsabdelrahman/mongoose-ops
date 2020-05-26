@@ -3,9 +3,8 @@ import {
   startTestingMongoDBConnection,
   closeTestingMongoDBConnection,
   dropMongoDBDatabase,
-  Database,
-  DatabaseServer,
-} from './mongodb';
+} from './connection';
+import { Database, DatabaseServer } from './types';
 
 export const beforeAllHook = async (): Promise<
   [Model<Document>, Database, DatabaseServer]
