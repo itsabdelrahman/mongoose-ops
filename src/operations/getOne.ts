@@ -1,11 +1,6 @@
 import { Model, Document } from 'mongoose';
 import { normalizeDocument } from '../utilities';
-
-type GetOneOptions = {
-  query?: Query;
-};
-
-type Query = any;
+import { GetOneOptions } from '../types';
 
 /**
  * Retrieves a document matching the provided

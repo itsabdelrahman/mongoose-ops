@@ -1,13 +1,7 @@
 import { Model, Document } from 'mongoose';
 import { flatten } from 'flat';
 import { normalizeDocument } from '../utilities';
-
-type UpdateOneOptions<T> = {
-  query: Query;
-  document: T;
-};
-
-type Query = any;
+import { UpdateOneOptions } from '../types';
 
 /**
  * Modifies a document matching the provided

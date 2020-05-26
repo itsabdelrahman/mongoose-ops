@@ -1,9 +1,6 @@
 import { Model, Document } from 'mongoose';
 import { normalizeDocument } from '../utilities';
-
-type CreateOneOptions<T> = {
-  document: T;
-};
+import { CreateOneOptions } from '../types';
 
 /**
  * Inserts a document in a collection.

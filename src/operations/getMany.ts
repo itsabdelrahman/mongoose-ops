@@ -1,24 +1,6 @@
 import { Model, Document } from 'mongoose';
 import { normalizeDocument } from '../utilities';
-
-type GetManyOptions = {
-  query?: Query;
-  sorting?: Sorting;
-  pagination?: Pagination;
-};
-
-type Query = any;
-
-type Sorting = {
-  [key: string]: SortingOrder;
-};
-
-type Pagination = {
-  skip: number;
-  limit: number;
-};
-
-type SortingOrder = 'ASCENDING' | 'DESCENDING';
+import { GetManyOptions } from '../types';
 
 /**
  * Retrieves the documents matching the provided

@@ -1,10 +1,5 @@
 import { Model, Document } from 'mongoose';
-
-type CountOptions = {
-  query?: Query;
-};
-
-type Query = any;
+import { CountOptions } from '../types';
 
 /**
  * Counts the documents matching the provided

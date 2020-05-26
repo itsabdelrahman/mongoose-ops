@@ -1,9 +1,6 @@
 import { Model, Document } from 'mongoose';
 import { normalizeDocument } from '../utilities';
-
-type CreateManyOptions<T> = {
-  documents: T[];
-};
+import { CreateManyOptions } from '../types';
 
 /**
  * Inserts multiple documents in a collection.

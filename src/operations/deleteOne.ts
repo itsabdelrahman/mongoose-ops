@@ -1,11 +1,6 @@
 import { Model, Document } from 'mongoose';
 import { normalizeDocument } from '../utilities';
-
-type DeleteOneOptions = {
-  query: Query;
-};
-
-type Query = any;
+import { DeleteOneOptions } from '../types';
 
 /**
  * Deletes a document matching the provided query
