@@ -15,6 +15,17 @@ _Disclaimer: this package is experimental — use at your own peril._
 ## Usage
 
 ```js
+import {
+  count,
+  getOne,
+  getMany,
+  createOne,
+  createMany,
+  updateOne,
+  deleteOne,
+  deleteMany,
+} from 'mongoose-ops';
+
 /* Count documents */
 const usersCount = await count(userModel)();
 
