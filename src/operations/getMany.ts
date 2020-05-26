@@ -20,6 +20,10 @@ type Pagination = {
 
 type SortingOrder = 'ASCENDING' | 'DESCENDING';
 
+/**
+ * Retrieves the documents matching the provided
+ * query in a collection.
+ */
 const getMany = <T>(model: Model<Document>) => async (
   options: GetManyOptions = {},
 ): Promise<T[]> => {

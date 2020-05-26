@@ -5,6 +5,9 @@ type CreateOneOptions<T> = {
   document: T;
 };
 
+/**
+ * Inserts a document in a collection.
+ */
 const createOne = <T>(model: Model<Document>) => async (
   options: CreateOneOptions<T>,
 ): Promise<T> => {

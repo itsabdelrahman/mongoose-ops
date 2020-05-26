@@ -5,6 +5,9 @@ type CreateManyOptions<T> = {
   documents: T[];
 };
 
+/**
+ * Inserts multiple documents in a collection.
+ */
 const createMany = <T>(model: Model<Document>) => async (
   options: CreateManyOptions<T>,
 ): Promise<T[]> => {

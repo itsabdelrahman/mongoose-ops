@@ -7,6 +7,10 @@ type DeleteManyOptions = {
 
 type Query = any;
 
+/**
+ * Deletes the documents matching the provided
+ * query in a collection.
+ */
 const deleteMany = <T>(model: Model<Document>) => async (
   options: DeleteManyOptions,
 ): Promise<T[]> => {

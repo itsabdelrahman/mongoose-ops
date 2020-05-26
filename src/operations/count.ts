@@ -6,6 +6,10 @@ type CountOptions = {
 
 type Query = any;
 
+/**
+ * Counts the documents matching the provided
+ * query in a collection.
+ */
 const count = (model: Model<Document>) => async (
   options: CountOptions = {},
 ): Promise<number> => {

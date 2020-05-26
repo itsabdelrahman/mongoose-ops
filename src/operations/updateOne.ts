@@ -9,6 +9,10 @@ type UpdateOneOptions<T> = {
 
 type Query = any;
 
+/**
+ * Modifies a document matching the provided
+ * query in a collection.
+ */
 const updateOne = <T>(model: Model<Document>) => async (
   options: UpdateOneOptions<T>,
 ): Promise<T> => {

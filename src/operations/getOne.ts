@@ -7,6 +7,10 @@ type GetOneOptions = {
 
 type Query = any;
 
+/**
+ * Retrieves a document matching the provided
+ * query in a collection.
+ */
 const getOne = <T>(model: Model<Document>) => async (
   options: GetOneOptions = {},
 ): Promise<T> => {
